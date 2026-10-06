@@ -49,6 +49,7 @@ let
     cd $src
     patch -p1 <${../../../patches/mpv-fix-missing-objc.patch}
     patch -p1 <${../../../patches/mpv-cocoa-no-swift-stubs.patch}
+    patch -p1 <${../../../patches/mpv-coreaudio-no-channelmap.patch}
     if [ "${os}" == "${oses.ios}" ] || [ "${os}" == "${oses.iossimulator}" ]; then
       patch -p1 <${../../../patches/mpv-audiounit-shared-session.patch}
     fi
