@@ -1,20 +1,16 @@
-diff --git a/libavcodec/allcodecs.c b/libavcodec/allcodecs.c
-index e593ad1..f074ac8 100644
 --- a/libavcodec/allcodecs.c
 +++ b/libavcodec/allcodecs.c
-@@ -884,6 +884,7 @@ extern const FFCodec ff_vp9_cuvid_decoder;
- extern const FFCodec ff_vp9_mediacodec_decoder;
+@@ -892,6 +892,7 @@
+ extern const FFCodec ff_vp9_mediacodec_encoder;
  extern const FFCodec ff_vp9_qsv_decoder;
  extern const FFCodec ff_vp9_vaapi_encoder;
 +extern const FFCodec ff_vp9_videotoolbox_decoder;
  extern const FFCodec ff_vp9_qsv_encoder;
+ extern const FFCodec ff_vvc_qsv_decoder;
  
- // null codecs
-diff --git a/libavcodec/vp9.c b/libavcodec/vp9.c
-index 7c0a246..2abd3d3 100644
 --- a/libavcodec/vp9.c
 +++ b/libavcodec/vp9.c
-@@ -1906,6 +1906,35 @@ const FFCodec ff_vp9_decoder = {
+@@ -1874,6 +1874,35 @@
  #if CONFIG_VP9_VDPAU_HWACCEL
                                 HWACCEL_VDPAU(vp9),
  #endif
@@ -34,7 +30,7 @@ index 7c0a246..2abd3d3 100644
 +    .p.capabilities        = AV_CODEC_CAP_DR1 | AV_CODEC_CAP_FRAME_THREADS | AV_CODEC_CAP_SLICE_THREADS,
 +    .caps_internal         = FF_CODEC_CAP_INIT_CLEANUP |
 +                                FF_CODEC_CAP_SLICE_THREAD_HAS_MF |
-+                                FF_CODEC_CAP_ALLOCATE_PROGRESS,
++                                FF_CODEC_CAP_USES_PROGRESSFRAMES,
 +    .flush                 = vp9_decode_flush,
 +    UPDATE_THREAD_CONTEXT(vp9_decode_update_thread_context),
 +    .p.profiles            = NULL_IF_CONFIG_SMALL(ff_vp9_profiles),

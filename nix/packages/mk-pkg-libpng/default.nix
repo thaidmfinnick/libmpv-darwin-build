@@ -39,6 +39,10 @@ let
         unzip ${libpngPatch} -d libpng-patch
         rsync -a libpng-patch/libpng-*/ $src/
 
+        # recent macOS SDKs define TARGET_OS_MAC but no longer ship <fp.h>
+        grep -q ' || defined(TARGET_OS_MAC)' $src/pngpriv.h
+        sed -i 's/ || defined(TARGET_OS_MAC)//' $src/pngpriv.h
+
         cp -r $src $out
       '';
 in

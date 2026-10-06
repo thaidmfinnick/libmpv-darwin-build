@@ -63,12 +63,16 @@ jobs:
           echo "version=${VERSION}" >> $GITHUB_OUTPUT
 
       # See ${workspace}/Makefile
+      # TODO: iOS and audio variants need the audiounit/remove-libass patches
+      # rebased on mpv 0.41, and the encodersgpl flavor needs fftools-ffi
+      # updated for ffmpeg 7.1, until then only the macOS video default archive
+      # is built
       - name: Build
         env:
           XCODE_PATH: ${{ steps.xcode_path.outputs.xcode_path }}
           VERSION: ${{ steps.version.outputs.version }}
         run: |
-          nix develop -c make XCODE_PATH=${XCODE_PATH} VERSION=${VERSION}
+          nix develop -c make XCODE_PATH=${XCODE_PATH} VERSION=${VERSION} TARGET=mk-out-archive-xcframeworks-macos-universal-video-default
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v7

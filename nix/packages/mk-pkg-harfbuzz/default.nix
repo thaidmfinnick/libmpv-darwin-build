@@ -25,9 +25,16 @@ let
     name = "${pname}-source-${version}";
     inherit (packageLock) url sha256;
   };
+  # recent macOS SDKs do not declare sincosf, use the sinf/cosf fallback
+  fixedSource = pkgs.runCommand "${pname}-fixed-source-${version}" { } ''
+    cp -r ${src} $out
+    chmod -R u+w $out
+    grep -q '#ifdef HAVE_SINCOSF' $out/src/OT/glyf/VarCompositeGlyph.hh
+    sed -i 's/#ifdef HAVE_SINCOSF/#if 0/' $out/src/OT/glyf/VarCompositeGlyph.hh
+  '';
   patchedSource = callPackage ../../utils/patch-shebangs/default.nix {
     name = "${pname}-patched-source-${version}";
-    inherit src;
+    src = fixedSource;
     inherit nativeBuildInputs;
   };
 in

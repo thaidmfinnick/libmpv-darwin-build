@@ -122,6 +122,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Swresample.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-default_Swscale.zip
@@ -142,6 +143,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Ogg.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-encodersgpl_Swresample.zip
@@ -167,6 +169,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Swresample.zip
 ├── libmpv-xcframeworks_v0.0.1_ios-universal-video-full_Swscale.zip
@@ -224,6 +227,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Swresample.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-default_Swscale.zip
@@ -244,6 +248,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Ogg.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-encodersgpl_Swresample.zip
@@ -269,6 +274,7 @@ $ tree result
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Mbedtls.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Mbedx509.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Mpv.zip
+├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Placebo.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Png16.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Swresample.zip
 ├── libmpv-xcframeworks_v0.0.1_macos-universal-video-full_Swscale.zip
@@ -323,8 +329,8 @@ Inclusion:
     <tr>
       <td rowspan="2"><strong>macOS</strong></td>
       <td>amd64</td>
-      <td rowspan="2"><code>10.9</code></td>
-      <td rowspan="2">Required by <code>uchardet</code></td>
+      <td rowspan="2"><code>10.15</code></td>
+      <td rowspan="2">Required by <code>mpv 0.41</code></td>
     </tr>
     <tr>
       <td>arm64</td>
@@ -376,6 +382,7 @@ flowchart LR
         A(mpv):::decoders -.-> B{{uchardet}}:::decoders
         A                 -.-> C{{libass}}:::decoders
         A                 -->  D(ffmpeg):::decoders
+        A                 -->  P(libplacebo):::decoders
 
         E(fftools-ffi):::encoders --> D
 
@@ -481,6 +488,7 @@ flowchart LR
 | libpng     | zlib/libpng                                            |       ✅       |
 | mbedtls    | Apache 2.0                                             |       ✅       |
 | uchardet   | MPL-1.1, GPL-2, LGPL-2.1                               |       ✅       |
+| libplacebo | LGPL-2.1+                                              |       ✅       |
 | libxml2    | MIT                                                    |       ✅       |
 | dav1d      | BSD-2-clause                                           |       ✅       |
 
@@ -497,6 +505,7 @@ flowchart LR
 | libpng      | zlib/libpng                          |       ✅       |
 | mbedtls     | Apache 2.0                           |       ✅       |
 | uchardet    | MPL-1.1, GPL-2, LGPL-2.1             |       ✅       |
+| libplacebo  | LGPL-2.1+                            |       ✅       |
 | libxml2     | MIT                                  |       ✅       |
 | dav1d       | BSD-2-clause                         |       ✅       |
 | fftools-ffi | LGPL-2.1                             |       ✅       |
